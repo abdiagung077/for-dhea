@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>khusus buat dhea 🌙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* BODY */
+body {
+  min-height: 100vh;
+  display: block;
+  background: linear-gradient(to bottom, #020814 0%, #071b34 55%, #0b2a4a 100%);
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  position: relative;
+}
+
+/* STARS */
+.stars, .stars2, .stars3 {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stars::before,
+.stars2::before,
+.stars3::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-repeat: repeat;
+  animation: drift linear infinite;
+}
+
+.stars::before {
+  background-image:
+    radial-gradient(2px 2px at 40px 60px, white, transparent),
+    radial-gradient(2px 2px at 120px 180px, white, transparent),
+    radial-gradient(1px 1px at 200px 100px, white, transparent);
+  background-size: 350px 350px;
+  opacity: 0.8;
+  animation-duration: 180s;
+}
+
+.stars2::before {
+  background-image:
+    radial-gradient(1px 1px at 80px 120px, white, transparent),
+    radial-gradient(2px 2px at 220px 200px, white, transparent);
+  background-size: 500px 500px;
+  opacity: 0.5;
+  animation-duration: 250s;
+}
+
+.stars3::before {
+  background-image:
+    radial-gradient(1px 1px at 100px 100px, white, transparent);
+  background-size: 650px 650px;
+  opacity: 0.3;
+  animation-duration: 320s;
+}
+
+@keyframes drift {
+  from { transform: translate(0,0); }
+  to { transform: translate(-300px,-300px); }
+}
+
+/* MOON */
+.moon {
+  position: absolute;
+  top: 7%;
+  right: 8%;
+  width: 90px;
+  height: 90px;
+  background: #f8fafc;
+  border-radius: 50%;
+  box-shadow: 0 0 35px rgba(255,255,255,0.35);
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: 6px;
+  left: 20px;
+  background: #071b34;
+  border-radius: 50%;
+}
+
+/* MUSIC */
+.music-control {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+}
+
+/* WRAPPER */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* CONTAINER */
+.container {
+  width: min(92%, 850px);
+  text-align: center;
+  padding: 50px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 28px;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 20px;
+}
+
+/* MESSAGE */
+.message {
+  color: #e2e8f0;
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  line-height: 1.8;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+/* PHOTO */
+.photo-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.photo-frame {
+  width: min(280px, 75vw);
+  height: min(360px, 85vw);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.12);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hint {
+  margin-top: 15px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+}
+
+/* ANIMATION */
+.fade-out { opacity: 0; transform: translateY(10px); }
+.fade-in { opacity: 1; transform: translateY(0); }
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  .container {
+    padding: 25px;
+  }
+
+  .moon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .moon::after {
+    width: 60px;
+    height: 60px;
+    left: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="music/music.mpeg" type="audio/mpeg">
+</audio>
+
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+<div class="moon"></div>
+
+<div class="wrapper">
+  <div class="container">
+
+    <div class="message fade-in" id="message">
+      allo sayangg
+    </div>
+
+    <div class="photo-section" id="photoSection">
+      <div class="photo-frame">
+        <img id="photo" src="foto/foto1.jpg">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const introMessages = [
+  "",
+  "maaf aku ganggu kamu lagi",
+  "maaf... mungkin aku belum jadi yang terbaik, tapi aku selalu tulus untuk kamu.",
+  "kali ini aku cuma mau kamu tau... aku nyesal banget.",
+  "ga seharusnya masalah itu aku pendem sendiri, aku seharusnya cerita ke kamu.",
+  "aku ga bisa ngubah masa lalu, tapi aku pengen memperbaiki hari esok.",
+  "aku tau hati kamu masih sakit sampe sekarang gara-gara aku.",
+  "aku tau aku ga pantes minta kepercayaan kamu lagi, tapi aku pengen kamu tau... aku beneran berubah.",
+  "aku beneran pengen kita bisa mulai lagi, dari awal, dengan lebih baik. aku janji bakal lebih terbuka, lebih perhatian, dan lebih sayang ke kamu.",
+  "mungkin kamu nganggap aku cuma ngomong doang, tapi aku beneran pengen buktiin ke kamu. aku siap ngelakuin apapun buat ngebuktiin kalau aku serius sama kamu.",
+  "aku ga bisa janji semuanya bakal sempurna, tapi aku bisa janji aku bakal selalu berusaha buat jadi yang terbaik buat kamu. aku ga mau kehilangan kamu lagi.",
+  "aku udah ngerasain apa yang kamu rasain, aku tau rasanya sakit, kecewa, dan kehilangan. aku ga mau kamu ngerasain itu lagi. aku pengen kita bisa bahagia bareng lagi, kayak dulu.",
+  "aku sayang kamu banget, lebih dari yang bisa aku ungkapin dengan kata-kata. aku pengen kamu tau itu, dan aku pengen kamu ngerasain itu lagi. aku pengen kita bisa jadi lebih kuat bareng-bareng.",
+  "aku ga bisa minta maaf cukup banyak buat semua yang udah aku lakuin, tapi aku pengen kamu tau... aku beneran minta maaf, dari lubuk hati yang paling dalam. aku harap kamu bisa ngasih aku kesempatan buat ngebuktiin kalau aku serius sama kamu.",
+  "coba kamu inget lagi kenangan indah kita dulu, semua momen spesial yang udah kita lewatin bareng. aku pengen kita bisa nambahin lebih banyak kenangan indah lagi, dan aku pengen kamu jadi bagian dari semua itu. aku pengen kita bisa bahagia bareng lagi, kayak dulu.",
+  "aku masih inget semua momen kita, semoga kamu juga masih inget, sini aku tunjukin momen kitaa..."
+];
+
+const photoMessages = [
+  "kamu inget ga klo ini pertama kita duduk ngobrol bareng.",
+  "ini pap pertama yg kamu kasih ke aku.",
+  "ini kita pertama jalan berdua, kita pergi nonton bareng.",
+  "abis nonton kita beli sate di nusa indah tapi krn rame jadinya kita bungkus bawa pulang.",
+  "klo ini pas kita jalan kedua, kita keliling trus beli sate lagi tapi krn tempat kemaren rame bgt jadinya kita beli di panorama",
+  "yg ini hari pas kita jadian tapi ini sebelum itu kita makan eskrim dulu di mixue",
+  "inget ga pas kita nyanyi di karaoke, pas kita duet trus abis itu kita foto bareng dan itu tepat sebelum kita jadian di jalan pulang",
+  "kamu lucu bgt pas pertama aku main ke kost kamu",
+  "ini kita jalan pertama kali abis jadian eh malah kejebak hujan di indomaret wkwk trus pulangnya kita masak mie di kost kamuu",
+  "liat ni foto kamu cantik bangettt pas kita mau nonton bareng akbar sama fikram",
+  "aku foto kamu diam-diam pas kita lagi tiduran wkwk",
+  "kita makan eskrim tapi di bingxue dekat megamall sampe mau tutup baru pulang wkwk",
+  "ini pas kita main mesin capit, aku hebat kan bisa dapet banyak boneka walau banyakan ga dapetnya sii hehe",
+  "ini kita difotoin ririn pas nikahan ayuk yg kamu ga berani ambil nasi krn malu",
+  "sebelum kamu pulang kita foto duluu, tau ga bentar lagi aku punya keponakan dan aku bakal dipanggil om wkwk",
+  "liat deh kita mesra banget pas di pantai abis bakar-bakar walau sosisnya rasa pasir wkwk",
+  "dan terakhir kita foto bareng di pinggir pantai sebelum pulang"
+];
+
+const photos =["foto/foto1.jpg","foto/foto2.jpg","foto/foto3.jpg","foto/foto4.jpg","foto/foto5.jpg","foto/foto6.jpg","foto/foto7.jpg","foto/foto8.jpg","foto/foto9.jpg","foto/foto10.jpg","foto/foto11.jpeg","foto/foto12.jpg","foto/foto13.jpg","foto/foto14.jpg","foto/foto15.jpg","foto/foto16.jpg","foto/foto17.jpg"];
+
+let i = 0;
+let p = 0;
+let introDone = false;
+let musicStarted = false;
+
+const msg = document.getElementById("message");
+const photoSection = document.getElementById("photoSection");
+const photo = document.getElementById("photo");
+const music = document.getElementById("bgMusic");
+const musicStatus = document.getElementById("musicStatus");
+
+function startMusic(){
+  if(!musicStarted){
+    music.play().then(()=>{
+      musicStatus.innerText = "🎵 Musik diputar";
+    }).catch(()=>{});
+    musicStarted = true;
+  }
+}
+
+function next(){
+  startMusic();
+
+  msg.classList.add("fade-out");
+
+  setTimeout(()=>{
+    if(!introDone){
+      i++;
+      if(i < introMessages.length){
+        msg.innerText = introMessages[i];
+      } else {
+        introDone = true;
+        photoSection.style.display = "flex";
+        msg.innerText = photoMessages[0];
+        photo.src = photos[0];
+      }
+    } else {
+      if (p < photos.length - 1) {
+  p++;
+}
+      msg.innerText = photoMessages[p];
+      photo.src = photos[p];
+    }
+
+    msg.classList.remove("fade-out");
+    msg.classList.add("fade-in");
+
+  },400);
+}
+
+document.addEventListener("click", next);
+document.addEventListener("touchstart", (e)=>{
+  e.preventDefault();
+  next();
+},{passive:false});
+</script>
+
+</body>
+</html>
