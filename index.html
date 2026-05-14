@@ -225,7 +225,7 @@ h1 {
 
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="bgm" loop>
   <source src="music.mpeg" type="audio/mpeg">
 </audio>
 
@@ -296,32 +296,33 @@ const photos =["foto/foto1.jpg","foto/foto2.jpg","foto/foto3.jpg","foto/foto4.jp
 let i = 0;
 let p = 0;
 let introDone = false;
-let musicStarted = false;
 
 const msg = document.getElementById("message");
 const photoSection = document.getElementById("photoSection");
 const photo = document.getElementById("photo");
-const music = document.getElementById("bgMusic");
-const musicStatus = document.getElementById("musicStatus");
+const music = document.getElementById("bgm");
 
-function startMusic(){
-  if(!musicStarted){
-    music.play().then(()=>{
-      musicStatus.innerText = "🎵 Musik diputar";
-    }).catch(()=>{});
-    musicStarted = true;
+let started = false;
+
+/* 🎯 HANDLE SEMUA DI SATU EVENT (INI KUNCI IPHONE) */
+function handleStart() {
+  if (!started) {
+    music.play().catch(() => {});
+    started = true;
   }
+
+  next();
 }
 
-function next(){
-  startMusic();
-
+function next() {
   msg.classList.add("fade-out");
 
-  setTimeout(()=>{
-    if(!introDone){
+  setTimeout(() => {
+
+    if (!introDone) {
       i++;
-      if(i < introMessages.length){
+
+      if (i < introMessages.length) {
         msg.innerText = introMessages[i];
       } else {
         introDone = true;
@@ -329,10 +330,10 @@ function next(){
         msg.innerText = photoMessages[0];
         photo.src = photos[0];
       }
+
     } else {
-      if (p < photos.length - 1) {
-  p++;
-}
+      if (p < photos.length - 1) p++;
+
       msg.innerText = photoMessages[p];
       photo.src = photos[p];
     }
@@ -340,15 +341,12 @@ function next(){
     msg.classList.remove("fade-out");
     msg.classList.add("fade-in");
 
-  },400);
+  }, 400);
 }
 
-document.addEventListener("click", next);
-document.addEventListener("touchstart", (e)=>{
-  e.preventDefault();
-  next();
-},{passive:false});
+/* 📱 EVENT PALING AMAN UNTUK IPHONE */
+document.addEventListener("click", handleStart, { once: false });
+document.addEventListener("touchstart", handleStart, { once: true });
 </script>
-
 </body>
 </html>
