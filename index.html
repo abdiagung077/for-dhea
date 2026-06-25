@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>khusus buat dhea 🌙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* BODY */
+body {
+  min-height: 100vh;
+  display: block;
+  background: linear-gradient(to bottom, #020814 0%, #071b34 55%, #0b2a4a 100%);
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  position: relative;
+}
+
+/* STARS */
+.stars, .stars2, .stars3 {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stars::before,
+.stars2::before,
+.stars3::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-repeat: repeat;
+  animation: drift linear infinite;
+}
+
+.stars::before {
+  background-image:
+    radial-gradient(2px 2px at 40px 60px, white, transparent),
+    radial-gradient(2px 2px at 120px 180px, white, transparent),
+    radial-gradient(1px 1px at 200px 100px, white, transparent);
+  background-size: 350px 350px;
+  opacity: 0.8;
+  animation-duration: 180s;
+}
+
+.stars2::before {
+  background-image:
+    radial-gradient(1px 1px at 80px 120px, white, transparent),
+    radial-gradient(2px 2px at 220px 200px, white, transparent);
+  background-size: 500px 500px;
+  opacity: 0.5;
+  animation-duration: 250s;
+}
+
+.stars3::before {
+  background-image:
+    radial-gradient(1px 1px at 100px 100px, white, transparent);
+  background-size: 650px 650px;
+  opacity: 0.3;
+  animation-duration: 320s;
+}
+
+@keyframes drift {
+  from { transform: translate(0,0); }
+  to { transform: translate(-300px,-300px); }
+}
+
+/* MOON */
+.moon {
+  position: absolute;
+  top: 7%;
+  right: 8%;
+  width: 90px;
+  height: 90px;
+  background: #f8fafc;
+  border-radius: 50%;
+  box-shadow: 0 0 35px rgba(255,255,255,0.35);
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: 6px;
+  left: 20px;
+  background: #071b34;
+  border-radius: 50%;
+}
+
+/* MUSIC */
+.music-control {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+}
+
+/* WRAPPER */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* CONTAINER */
+.container {
+  width: min(92%, 850px);
+  text-align: center;
+  padding: 50px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 28px;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 20px;
+}
+
+/* MESSAGE */
+.message {
+  color: #e2e8f0;
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  line-height: 1.8;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+/* PHOTO */
+.photo-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.photo-frame {
+  width: min(280px, 75vw);
+  height: min(360px, 85vw);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.12);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hint {
+  margin-top: 15px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+}
+
+/* ANIMATION */
+.fade-out { opacity: 0; transform: translateY(10px); }
+.fade-in { opacity: 1; transform: translateY(0); }
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  .container {
+    padding: 25px;
+  }
+
+  .moon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .moon::after {
+    width: 60px;
+    height: 60px;
+    left: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop>
+  <source src="music.mpeg" type="audio/mpeg">
+</audio>
+
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+<div class="moon"></div>
+
+<div class="wrapper">
+  <div class="container">
+
+    <div class="message fade-in" id="message">
+      allo sayangg
+    </div>
+
+    <div class="photo-section" id="photoSection">
+      <div class="photo-frame">
+        <img id="photo" src="foto/foto1.jpg">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const introMessages = [
+  "",
+  "kalo kamu baca ini, berarti kamu lagi ingat aku yaa... aku seneng banget kalo kamu baca ini.",
+  "kenapa kok kamu sampe buka link ini lagi? dia nyakitin kamu ya? atau kamu lagi ada masalah sama dia? atau malah kamu lagi kangen aku? wkwk aku ga tau yaa...",
+  "kamu kalo mau cerita ke aku gapapa banget kokk, aku bakal dengerin kamu sampe kamu puas cerita ke aku.",
+  "karena aku disini masih nungguin kamu balik ke aku, aku masih sayang banget sama kamu, aku ga bisa bohong soal itu.",
+  "aku udah janji ke diri aku buat ga ganggu kamu lagi, makannya aku ubah isi website ini diam-diam biar kamu ga ngerasa keganggu sama aku",
+  "kamu apa kabar sayangggg??? aku kangen kamuu, aku kangen call sama kamuu, aku kangen dapet pap dari kamuu, aku kangen semua hal tentang kamuu...",
+  "padahal aku tau kalo kamu udah dapat pengganti aku dan aku bertekad buat ngerelain kamu, tapi aku ga kuat sayanggg",
+  "aku cemburu liat kamu sama dia, harusnya aku di posisi itu, harusnya aku yang selalu di samping kamu, kenapa secepat itu sayanggg kamu dapat pengganti aku?",
+  "kamu udah post dia di akun first kamu, padahal selama ini itu yang selalu aku minta dari kamu, aku pengen ngerasain dibanggain sama kamu, tapi kamu ga pernah ngelakuin itu ke aku",
+  "semua kenangan kita dulu ga ada artinya buat kamu yaa? aku buat ini sambil nangis kamu asal kamu tau...",
+  "aku ga tau kenapa aku ngerasa kayak gini sekarang, dada aku sesak banget, semua pikiran aku tentang kamu, semua hal tentang kamu, aku kangen kamuu sayangggg",
+  "aku buat ini tanggal 25 juni 2026 sayanggg, dan ini udah tiga bulan semenjak kita putus",
+  "tiga bulan sayanggg, tiga bulan aku tiap hari kepikiran kamu, aku gatau udah berapa banyak air mata aku keluar gara-gara kangen kamu, cuma kamu yang tau betapa cengengnya aku",
+  "semua tentang aku beneran udah hilang ya dari hati kamu? aku udah kasih bunga yang selama ini kamu mau sayanggg, aku udah ga cuek kyk dulu lagi kokk, aku udah berubah sayanggg...",
+  "apapun yang kamu mau bakal aku kasih sayanggg asal kamu mau balik ke aku, tapi kayaknya ga mungkin lagi yaa, kamu keliataan bahagia sama dia, dan aku turut bahagia buat kamu sayanggg, gapapa kok biar aku sendiri yang ngerasain sakit inii",
+  "aku cuma mau liat kamu bahagia sayanggg, walaupun bahagia kamu ga sama aku, mungkin nanti waktu yang bakal nyembuhin semua sakit aku, tapi kamu harus percaya kalo kamu selalu punya tempat spesial di hati aku",
+  "kamu ga bakal tergantikan sama siapapun sayanggg, aku ga bakal bisa lupain kamu, aku ga bakal bisa lupain semua hal tentang kamu, aku ga bakal bisa lupain semua kenangan kita dulu sayanggg",
+  "tapi aku harus sadar sama posisi aku sekarang, aku juga gamau jadi perusak kebahagiaan kamu",
+  "kalo kamu udah bisa nerima aku lagi langsung hubungin aku ya sayanggg, nomor kamu selalu punya tempat di hp aku, jangan gengsi ngehubungin aku yaa, kalo kamu gengsi kasih kode di tiktok kamu juga gapapa kokkkk",
+  "always be happy my sweetheart, and lastly i just wanna say i really miss you my angel..."
+];
+
+
+let i = 0;
+let p = 0;
+let introDone = false;
+
+const msg = document.getElementById("message");
+const music = document.getElementById("bgm");
+
+let started = false;
+
+/* 🎯 HANDLE SEMUA DI SATU EVENT (INI KUNCI IPHONE) */
+function handleStart() {
+  if (!started) {
+    music.play().catch(() => {});
+    started = true;
+  }
+
+  next();
+}
+
+function next() {
+  msg.classList.add("fade-out");
+
+  setTimeout(() => {
+
+    if (!introDone) {
+      i++;
+
+      if (i < introMessages.length) {
+        msg.innerText = introMessages[i];
+      } else {
+        introDone = true;
+        photoSection.style.display = "flex";
+        msg.innerText = photoMessages[0];
+        photo.src = photos[0];
+      }
+
+    } else {
+      if (p < photos.length - 1) p++;
+
+      msg.innerText = photoMessages[p];
+      photo.src = photos[p];
+    }
+
+    msg.classList.remove("fade-out");
+    msg.classList.add("fade-in");
+
+  }, 400);
+}
+
+/* 📱 EVENT PALING AMAN UNTUK IPHONE */
+document.addEventListener("click", handleStart, { once: false });
+document.addEventListener("touchstart", handleStart, { once: true });
+</script>
+</body>
+</html>
